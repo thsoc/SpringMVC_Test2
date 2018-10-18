@@ -16,4 +16,28 @@
 		
 		<mvc:annotation-driven></mvc:annotation-driven>
 		<context:component-scan base-package="cn.com.mvc.controller"></context:component-scan>
+		
+		<!-- 配置jsp视图解析器 ，需要有jstl这个jar包，否则不能映射 -->
+		<bean id="viewResolver"
+			class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			<property name="viewClass"
+				value="org.springframework.web.servlet.view.JstlView" />
+			<property name="prefix" value="/WEB-INF/jsp/" />
+			<property name="suffix" value=".jsp" />
+			<!-- <property name="order" value="0"></property> -->
+		</bean>
+	
+		<!-- -html视图解析器 -->
+		<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">  
+	        <property name="templateLoaderPath">  
+	            <value>/</value>  
+	        </property>  
+	    </bean>  
+	     <bean id="htmlviewResolver"  
+	        class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">  
+	        <property name="suffix" value=".html" /> 
+	        <property name="order" value="1"></property> 
+	        <property name="contentType" value="text/html;charset=UTF-8"></property>         
+	    </bean> 
+		
 </beans>
